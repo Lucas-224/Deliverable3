@@ -1,5 +1,7 @@
-
-
+/**
+ * I have marked my territory.
+ *
+ */
 public class AiOpponent extends Player {
 
     private int personalityType;
