@@ -1,8 +1,5 @@
 package deliverable3;
 
-
-
-
 public enum CardValue {
     ACE,
     TWO,

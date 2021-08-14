@@ -1,5 +1,8 @@
 package deliverable3;
 
+import static deliverable3.CardSuits.*;
+import static deliverable3.CardValue.*;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +21,8 @@ public class TestMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
+        
     
 }

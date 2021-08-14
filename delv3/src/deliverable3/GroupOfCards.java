@@ -1,31 +1,35 @@
 package deliverable3;
 
-
-
- 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GroupOfCards {
 
-    private ArrayList cards;
+    private ArrayList deck;
     private int size;
 
-    public ArrayList getCards() {
-        return this.cards;
+    public void standardDeck() {
+        this.deck = new ArrayList();
+        for (int i = 0; i <= size; i++) {
+            CardValue value = CardValue.values()[i];
+
+            for (int j = 0; j < 4; j++) {
+                PlayingCard card = new PlayingCard(CardSuits.values()[j], value);
+                this.deck.add(card);
+            }
+        }
     }
 
-    /**
-     *
-     * @param size
-     */
     public GroupOfCards(int size) {
-        // TODO - implement GroupOfCards.GroupOfCards
-        throw new UnsupportedOperationException();
+        
     }
 
-    public void shuffle() {
-        // TODO - implement GroupOfCards.shuffle
-        throw new UnsupportedOperationException();
+    public void shuffle(ArrayList deck) {
+        Collections.shuffle(deck);
+    }
+
+    public ArrayList getDeck() {
+        return this.deck;
     }
 
     public int getSize() {

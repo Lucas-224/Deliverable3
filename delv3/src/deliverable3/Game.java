@@ -1,8 +1,5 @@
 package deliverable3;
 
-
-
-
 import java.util.ArrayList;
 
 public abstract class Game {
