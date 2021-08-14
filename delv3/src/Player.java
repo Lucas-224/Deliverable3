@@ -1,3 +1,8 @@
+
+/**
+  * This is a test and I hate Netbeans.  -Chris
+  */
+
 import java.util.ArrayList;
 
 public abstract class Player {
