@@ -1,7 +1,3 @@
-package deliverable3;
-
-
-
 
 public class HumanPlayer extends Player {
 

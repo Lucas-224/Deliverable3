@@ -1,4 +1,3 @@
-package deliverable3;
 
 import static deliverable3.CardSuits.*;
 import static deliverable3.CardValue.*;

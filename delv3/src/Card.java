@@ -1,4 +1,3 @@
-package deliverable3;
 
 public abstract class Card {
 
