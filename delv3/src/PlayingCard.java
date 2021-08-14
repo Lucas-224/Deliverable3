@@ -1,3 +1,4 @@
+
 // this is a test for git pull
 public class PlayingCard extends Card {
 
@@ -9,6 +10,7 @@ public class PlayingCard extends Card {
      * @param Suit
      * @param Value
      */
+
     public PlayingCard(CardSuits suit, CardValue value) {
         this.suit = suit;
         this.value = value;

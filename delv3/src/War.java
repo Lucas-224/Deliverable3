@@ -1,8 +1,15 @@
 
+
+import java.util.Scanner;
+
+
+
+
 public class War extends Game {
 
     private GroupOfCards deck;
     private int hand_size;
+    private HumanPlayer help;
 
     public War(GroupOfCards deck, int hand_size, String name) {
         super(name);
@@ -46,7 +53,37 @@ public class War extends Game {
 
     @Override
     public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        System.out.println("----------WELCOME TO WAR----------");
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Select from menu:\n"
+                + "1: Start Playing\n"
+                + "2: How to play\n"
+                + "3: Blaah Blaah Blaah\n"
+                + "4: Blaah1 Cyaa2 Naaa3");
+        int value = 0;
+        value = input.nextInt();
+
+        switch (value) {
+            case 1:
+                System.out.println("Game Starts");
+                break;
+            case 2:
+                help.helpMe();
+                break;
+            case 3:
+                System.out.println("3: Blaah Blaah Blaah");
+                break;
+            case 4:
+                System.out.println("4: Blaah1 Cyaa2 Naaa3");
+                break;
+            default:
+                System.out.println("Invalid Input");    
+        }
+           
+
     }
 
     @Override

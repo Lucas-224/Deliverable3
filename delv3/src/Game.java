@@ -1,9 +1,11 @@
+
 import java.util.ArrayList;
 
 public abstract class Game {
 
     private String name;
     private ArrayList players;
+
 
     /**
      *
@@ -13,6 +15,7 @@ public abstract class Game {
         // TODO - implement Game.Game
         throw new UnsupportedOperationException();
     }
+
 
     public String getName() {
         return this.name;
@@ -30,9 +33,20 @@ public abstract class Game {
         this.players = players;
     }
 
+
+    /**
+     *
+     * @param name
+     */
+    public Game(String name) {
+        // TODO - implement Game.Game
+        throw new UnsupportedOperationException();
+    }
+
     public abstract void play();
 
     public abstract void declareWinner();
+
 
     /**
      * Removes potential bad characters.

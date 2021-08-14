@@ -29,6 +29,7 @@ public class GroupOfCards {
 
     public ArrayList getDeck() {
         return this.deck;
+
     }
 
     public int getSize() {

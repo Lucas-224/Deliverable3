@@ -3,6 +3,7 @@
   * This is a test and I hate Netbeans.  -Chris
   */
 
+
 import java.util.ArrayList;
 
 public abstract class Player {
@@ -11,10 +12,17 @@ public abstract class Player {
     private int score;
     private GroupOfCards hand;
 
+
+    public String getName() {
+        return this.name;
+    }
+
+
     /**
      *
      * @param name
      */
+
 
     public Player(String name) {
         setName(name);
@@ -22,6 +30,7 @@ public abstract class Player {
 
     public String getName() {
         return this.name;
+
     }
 
     /**

@@ -1,3 +1,4 @@
+
 /**
  * I have marked my territory.  It still works. - Chris
  *
@@ -5,6 +6,7 @@
 public class AiOpponent extends Player {
 
     private int personalityType;
+
 
     public AiOpponent(int personalityType, String name) {
         super(name);
@@ -20,6 +22,8 @@ public class AiOpponent extends Player {
      * @param personalityType
      */
     public void setPersonalityType(int personalityType) {
+
+
         if (personalityType < 1) {
 
             // set to low difficulty 
