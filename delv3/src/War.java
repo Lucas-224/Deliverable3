@@ -1,9 +1,13 @@
-
-
 public class War extends Game {
 
     private GroupOfCards deck;
     private int hand_size;
+
+    public War(GroupOfCards deck, int hand_size, String name) {
+        super(name);
+        this.deck = deck;
+        this.hand_size = hand_size;
+    }
 
     /**
      *
