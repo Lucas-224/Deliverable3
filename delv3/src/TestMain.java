@@ -1,6 +1,5 @@
 
-import static deliverable3.CardSuits.*;
-import static deliverable3.CardValue.*;
+
 
 
 /*
