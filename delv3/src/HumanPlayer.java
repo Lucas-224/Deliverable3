@@ -1,6 +1,8 @@
 
-
 public class HumanPlayer extends Player {
+    public HumanPlayer(String name) {
+        super(name);
+    }
 
     public void viewHand() {
         // TODO - implement HumanPlayer.viewHand
@@ -23,6 +25,7 @@ public class HumanPlayer extends Player {
         If there is a draw, players each choose another card to reveal at the same time, and this continues until one player wins 
 
         the \u201cbattle\u201d.  Whoever has the most points in the end wins the game of war.""");
+
     }
 
 }

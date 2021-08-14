@@ -1,11 +1,21 @@
 
-
 import java.util.ArrayList;
 
 public abstract class Game {
 
     private String name;
     private ArrayList players;
+
+
+    /**
+     *
+     * @param name
+     */
+    public Game(String name) {
+        // TODO - implement Game.Game
+        throw new UnsupportedOperationException();
+    }
+
 
     public String getName() {
         return this.name;
@@ -23,6 +33,7 @@ public abstract class Game {
         this.players = players;
     }
 
+
     /**
      *
      * @param name
@@ -36,4 +47,24 @@ public abstract class Game {
 
     public abstract void declareWinner();
 
+
+    /**
+     * Removes potential bad characters.
+     * List of naughty characters from
+     * http://www.javapractices.com/topic/TopicAction.do?Id=96
+     *
+     * @param input
+     * @return
+     */
+    public static String cleanStringInput(String input) {
+        input = input.strip();
+        input = input.replaceAll("\\\\", "");
+        input = input.replaceAll("<", "");
+        input = input.replaceAll(">", "");
+        input = input.replaceAll("&", "");
+        input = input.replaceAll("\\\"", "");
+        input = input.replaceAll("\\\'", "");
+
+        return input;
+    }
 }

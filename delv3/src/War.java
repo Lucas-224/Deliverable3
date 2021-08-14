@@ -1,5 +1,7 @@
 
+
 import java.util.Scanner;
+
 
 
 
@@ -8,6 +10,12 @@ public class War extends Game {
     private GroupOfCards deck;
     private int hand_size;
     private HumanPlayer help;
+
+    public War(GroupOfCards deck, int hand_size, String name) {
+        super(name);
+        this.deck = deck;
+        this.hand_size = hand_size;
+    }
 
     /**
      *
@@ -45,6 +53,7 @@ public class War extends Game {
 
     @Override
     public void play() {
+
         System.out.println("----------WELCOME TO WAR----------");
         
         Scanner input = new Scanner(System.in);
@@ -74,6 +83,7 @@ public class War extends Game {
                 System.out.println("Invalid Input");    
         }
            
+
     }
 
     @Override

@@ -1,4 +1,8 @@
 
+/**
+  * This is a test and I hate Netbeans.  -Chris
+  */
+
 
 import java.util.ArrayList;
 
@@ -8,25 +12,34 @@ public abstract class Player {
     private int score;
     private GroupOfCards hand;
 
+
     public String getName() {
         return this.name;
     }
 
+
     /**
      *
      * @param name
      */
-    public void setName(String name) {
-        this.name = name;
+
+
+    public Player(String name) {
+        setName(name);
+    }
+
+    public String getName() {
+        return this.name;
+
     }
 
     /**
      *
      * @param name
      */
-    public Player(String name) {
-        // TODO - implement Player.Player
-        throw new UnsupportedOperationException();
+
+    public void setName(String name) {
+        this.name = Game.cleanStringInput(name);
     }
 
     public void play() {
@@ -47,7 +60,13 @@ public abstract class Player {
      * @param score
      */
     public void setScore(int score) {
-        this.score = score;
+
+        if (score < 0) {
+            this.score = 0;
+        } else {
+            this.score = score;
+        }
+
     }
 
     public int chooseCard() {

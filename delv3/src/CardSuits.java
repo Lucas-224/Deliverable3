@@ -1,5 +1,4 @@
 
-
 public enum CardSuits {
     HEARTS,
     CLUBS,
