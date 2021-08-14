@@ -1,3 +1,4 @@
+
 public class War extends Game {
 
     private GroupOfCards deck;

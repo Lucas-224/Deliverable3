@@ -15,6 +15,7 @@ public abstract class Player {
      *
      * @param name
      */
+
     public Player(String name) {
         setName(name);
     }
@@ -27,10 +28,10 @@ public abstract class Player {
      *
      * @param name
      */
+
     public void setName(String name) {
         this.name = Game.cleanStringInput(name);
     }
-
 
     public void play() {
         // add play feature
@@ -50,11 +51,13 @@ public abstract class Player {
      * @param score
      */
     public void setScore(int score) {
+
         if (score < 0) {
             this.score = 0;
         } else {
             this.score = score;
         }
+
     }
 
     public int chooseCard() {
