@@ -1,5 +1,5 @@
 /**
- * I have marked my territory.
+ * I have marked my territory.  It still works. - Chris
  *
  */
 public class AiOpponent extends Player {
