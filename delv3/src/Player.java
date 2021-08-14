@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 public abstract class Player {
@@ -7,6 +5,14 @@ public abstract class Player {
     private String name;
     private int score;
     private GroupOfCards hand;
+
+    /**
+     *
+     * @param name
+     */
+    public Player(String name) {
+        setName(name);
+    }
 
     public String getName() {
         return this.name;
@@ -17,17 +23,9 @@ public abstract class Player {
      * @param name
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = Game.cleanStringInput(name);
     }
 
-    /**
-     *
-     * @param name
-     */
-    public Player(String name) {
-        // TODO - implement Player.Player
-        throw new UnsupportedOperationException();
-    }
 
     public void play() {
         // add play feature
@@ -47,7 +45,11 @@ public abstract class Player {
      * @param score
      */
     public void setScore(int score) {
-        this.score = score;
+        if (score < 0) {
+            this.score = 0;
+        } else {
+            this.score = score;
+        }
     }
 
     public int chooseCard() {
