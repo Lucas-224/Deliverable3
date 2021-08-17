@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +19,11 @@ public class TestMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        ArrayList<Card> deck = new ArrayList();
+        
+        Deck normalDeck = new Deck(deck);
+        normalDeck.getSize();
+        Hand hand = new Hand();
         
     }
         

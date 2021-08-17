@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class War extends Game {
 
-    private GroupOfCards deck;
+    private Deck deck;
     private int handSize;
     private HumanPlayer help;
 
-    public War(GroupOfCards deck, int handSize, String name) {
+    public War(Deck deck, int handSize, String name) {
         super(name);
         this.deck = deck;
         this.handSize = handSize;
@@ -31,7 +31,7 @@ public class War extends Game {
         return this.deck;
     }
 
-    public void setDeck(GroupOfCards deck) {
+    public void setDeck(Deck deck) {
         this.deck = deck;
     }
 
