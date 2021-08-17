@@ -4,42 +4,36 @@ import java.util.Collections;
 
 public class GroupOfCards {
 
-    private ArrayList deck;
+    private ArrayList<Card> card;
     private int size;
 
-    public void standardDeck() {
-        this.deck = new ArrayList();
-        for (int i = 0; i <= size; i++) {
-            CardValue value = CardValue.values()[i];
-
-            for (int j = 0; j < 4; j++) {
-                PlayingCard card = new PlayingCard(CardSuits.values()[j], value);
-                this.deck.add(card);
-            }
-        }
-    }
+    
 
     public GroupOfCards(int size) {
+        this.card = new ArrayList<Card>();
+        this.size = size;
         
     }
 
-    public void shuffle(ArrayList deck) {
-        Collections.shuffle(deck);
+    public void shuffle(ArrayList<Card> card) {
+        Collections.shuffle(card);
     }
 
+    
     public ArrayList getDeck() {
-        return this.deck;
-
+        return this.card;
+    }
+    public void showDeck(ArrayList<Card> deck) {
+        for(int i = 0; i < deck.size(); i++){
+            System.out.println( i + ": " + deck.get(i).toString());
+            
+        }
     }
 
+    
     public int getSize() {
         return this.size;
     }
-
-    /**
-     *
-     * @param size
-     */
     public void setSize(int size) {
         this.size = size;
     }

@@ -7,8 +7,8 @@ public class PlayingCard extends Card {
 
     /**
      *
-     * @param Suit
-     * @param Value
+     * @param suit
+     * @param value
      */
 
     public PlayingCard(CardSuits suit, CardValue value) {
