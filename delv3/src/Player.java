@@ -1,9 +1,4 @@
 
-/**
-  * This is a test and I hate Netbeans.  -Chris
-  */
-
-
 import java.util.ArrayList;
 
 public abstract class Player {
@@ -36,9 +31,9 @@ public abstract class Player {
      *  
      */
     
-    public int chooseCardToDraw() {
-        return in.nextInt();
-    }
+    //public int chooseCardToDraw() {
+    //    return in.nextInt();
+    //}
 
     public int getScore() {
         return this.score;

@@ -9,27 +9,21 @@ import java.util.Collections;
  */
 public class Deck extends GroupOfCards {
 
-    
-        private ArrayList<Card> deck;
+    private ArrayList<Card> deck;
     private int size;
 
 
-    public ArrayList<Card> Deck() {
-        this.deck = new ArrayList<Card>();
+    public Deck(ArrayList<Card> deck) {
         for (int i = 0; i <= 13; i++) {
             CardValue value = CardValue.values()[i];
 
             for (int j = 0; j < 4; j++) {
                 Card card = new PlayingCard(CardSuits.values()[j], value);
-                this.deck.add(card);
+                deck.add(card);
             }
         }
         size = 52;
-        return deck;
-    }
-
-    public void shuffle(ArrayList<Card> deck) {
-        Collections.shuffle(deck);
+        this.deck = deck;
     }
 
     public int cardsLeft() {

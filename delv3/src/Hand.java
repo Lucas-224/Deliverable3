@@ -10,26 +10,11 @@ import java.util.ArrayList;
  * this class 
  * @author Lucas
  */
-public class Hand {
+public class Hand extends GroupOfCards{
     
- private ArrayList<Card> hand;   // The cards in the hand.
+    private GroupOfCards hand;   // The cards in the hand.
 
     public Hand() {
-        hand = new ArrayList<Card>();
-    }
-
-    public void addCard(Card c) {
-        hand.add(c);
-    }
-
-    public void removeCard(int index) {
-        if (index < 0 || index >= hand.size()) {
-            throw new IllegalArgumentException("Position does not exist in hand: " + index);
-        }
-        hand.remove(index);
-    }
-
-    public int getCardCount() {
-        return hand.size();
+        hand = new GroupOfCards();
     }
 }
