@@ -7,7 +7,8 @@
 import java.util.ArrayList;
 
 public abstract class Player {
-
+    
+    
     private String name;
     private int score;
     private GroupOfCards hand;
@@ -17,26 +18,9 @@ public abstract class Player {
         return this.name;
     }
 
-
-    /**
-     *
-     * @param name
-     */
-
-
     public Player(String name) {
         setName(name);
     }
-
-    public String getName() {
-        return this.name;
-
-    }
-
-    /**
-     *
-     * @param name
-     */
 
     public void setName(String name) {
         this.name = Game.cleanStringInput(name);
@@ -46,9 +30,14 @@ public abstract class Player {
         // add play feature
     }
 
-    public Card drawCard() {
-        // TODO - implement Player.drawCard
-        throw new UnsupportedOperationException();
+    
+    /**
+     * player choices
+     *  
+     */
+    
+    public int chooseCardToDraw() {
+        return in.nextInt();
     }
 
     public int getScore() {

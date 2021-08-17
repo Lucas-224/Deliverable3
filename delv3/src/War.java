@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class War extends Game {
 
     private GroupOfCards deck;
-    private int hand_size;
+    private int handSize;
     private HumanPlayer help;
 
-    public War(GroupOfCards deck, int hand_size, String name) {
+    public War(GroupOfCards deck, int handSize, String name) {
         super(name);
         this.deck = deck;
-        this.hand_size = hand_size;
+        this.handSize = handSize;
     }
 
     /**
@@ -31,24 +31,16 @@ public class War extends Game {
         return this.deck;
     }
 
-    /**
-     *
-     * @param deck
-     */
     public void setDeck(GroupOfCards deck) {
         this.deck = deck;
     }
 
-    public int getHand_size() {
-        return this.hand_size;
+    public int getHandSize() {
+        return this.handSize;
     }
 
-    /**
-     *
-     * @param hand_size
-     */
-    public void setHand_size(int hand_size) {
-        this.hand_size = hand_size;
+    public void setHandSize(int handSize) {
+        this.handSize = handSize;
     }
 
     @Override
