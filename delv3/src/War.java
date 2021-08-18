@@ -90,6 +90,14 @@ public class War extends Game {
                 + "2: How to play");
         } while(start == false);
            
+        System.out.println("----------WELCOME TO WAR----------");
+        System.out.println("Hello, please enter your name.");
+        String playerName = input.nextLine();
+        
+        //Player player = new HumanPlayer(playerName);
+
+
+
 
     }
 
