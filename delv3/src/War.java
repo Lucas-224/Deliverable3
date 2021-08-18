@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import static java.util.Collections.shuffle;
 import java.util.Scanner;
@@ -9,11 +8,11 @@ import java.util.Scanner;
 
 public class War extends Game {
 
-    private Deck deck;
+    private GroupOfCards deck;
     private int handSize;
     private HumanPlayer help;
 
-    public War(Deck deck, int handSize, String name) {
+    public War(GroupOfCards deck, int handSize, String name) {
         super(name);
         this.deck = deck;
         this.handSize = handSize;
@@ -37,7 +36,7 @@ public class War extends Game {
         return this.deck;
     }
 
-    public void setDeck(Deck deck) {
+    public void setDeck(GroupOfCards deck) {
         this.deck = deck;
     }
 
@@ -53,9 +52,9 @@ public class War extends Game {
     public void play() {
 
         System.out.println("----------WELCOME TO WAR----------");
-        
+
         Scanner input = new Scanner(System.in);
-        
+
         System.out.println("Select from menu:\n"
                 + "1: Start Playing\n"
                 + "2: How to play");
@@ -83,6 +82,7 @@ public class War extends Game {
                 break;
             default:
                 System.out.println("Invalid Input");
+
                 break;
         }
             System.out.println("Select from menu:\n"
@@ -90,14 +90,12 @@ public class War extends Game {
                 + "2: How to play");
         } while(start == false);
            
+
         System.out.println("----------WELCOME TO WAR----------");
         System.out.println("Hello, please enter your name.");
         String playerName = input.nextLine();
         
         //Player player = new HumanPlayer(playerName);
-
-
-
 
     }
 
