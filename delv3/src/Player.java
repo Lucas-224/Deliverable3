@@ -1,16 +1,20 @@
-
 import java.util.ArrayList;
 
 public abstract class Player {
-    
-    
+
+
     private String name;
     private int score;
     private GroupOfCards hand;
+    private boolean isHuman; // there's probably a better way to do this...
 
 
     public String getName() {
         return this.name;
+    }
+
+    public Player() {
+        // null constructor to allow for placeholders in War class
     }
 
     public Player(String name) {
@@ -25,12 +29,12 @@ public abstract class Player {
         // add play feature
     }
 
-    
+
     /**
      * player choices
-     *  
+     * <p>
      */
-    
+
     //public int chooseCardToDraw() {
     //    return in.nextInt();
     //}
@@ -53,10 +57,8 @@ public abstract class Player {
 
     }
 
-    public int chooseCard() {
-        // TODO - implement Player.chooseCard
-        throw new UnsupportedOperationException();
-    }
+    // changed from returning int to returning a card, made it abstract
+    public abstract Card chooseCard();
 
     public GroupOfCards getHand() {
         return this.hand;

@@ -21,6 +21,9 @@ public class GroupOfCards {
     }
 
     public void showCards() {
+        if (cards.size() == 0) {
+            System.out.println("No cards left!");
+        }
         for (int i = 0; i < cards.size(); i++) {
             System.out.println("Card [" + i + "]: " + cards.get(i).toString());
         }
@@ -37,8 +40,12 @@ public class GroupOfCards {
 
     }
 
-    // to remove first card (e.g. for drawing from deck)
+    // to remove first card (e.g. for drawing from deck)...ALSO REQUIRES VALIDATION BEFORE ACCESSING
     public Card removeCard() {
+        if (cards.size() == 0) {
+            throw new RuntimeException("Attempted to take card...no card "
+                + "available!");
+        }
         return cards.remove(0);
     }
 
@@ -60,7 +67,7 @@ public class GroupOfCards {
 
     public void setLimit(int limit) {
         if (limit <= 0) {
-            limit = 1; // force min value of 1
+            limit = 1; // force minimum limit of 1
         }
         this.limit = limit;
     }
