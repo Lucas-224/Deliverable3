@@ -20,6 +20,7 @@ public class TestMain {
      */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+
         GroupOfCards deck = new GroupOfCards();
 
         int handsize = 5;
@@ -64,5 +65,12 @@ public class TestMain {
         int val = sc.nextInt();
         PlayingCard testCard = (PlayingCard) hand.removeCard(val);
         System.out.println("Card Strength: " + testCard.getStrength());
+        String Gname = "\"The Game of WAR -- (C)Abstract Warriors Software\"";
+
+        War war = new War(name);
+        war.play();
+        //Deck deck = new Deck();
+        //int handsize = 5;
+
     }
 }
