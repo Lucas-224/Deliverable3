@@ -16,11 +16,11 @@ public abstract class GroupOfCards {
         this.size = size;
     }
 
-    public void shuffle(ArrayList<Card> card) {
-        Collections.shuffle(card);
+    public void shuffle() {
+        Collections.shuffle(getCards());
     }
 
-    public ArrayList getDeck() {
+    public ArrayList getCards() {
         return this.card;
     }
     public void showCards(ArrayList<Card> deck) {
@@ -35,7 +35,7 @@ public abstract class GroupOfCards {
         }
         card.remove(index);
     }
-    public void addCard(PlayingCard newCard){
+    public void addCard(Card newCard){
         card.add(newCard);
     }
     

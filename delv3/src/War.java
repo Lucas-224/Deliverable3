@@ -1,5 +1,7 @@
 
 
+import java.util.ArrayList;
+import static java.util.Collections.shuffle;
 import java.util.Scanner;
 
 
@@ -15,6 +17,10 @@ public class War extends Game {
         super(name);
         this.deck = deck;
         this.handSize = handSize;
+    }
+
+    public War(String name) {
+        super(name);
     }
 
     /**
@@ -52,32 +58,55 @@ public class War extends Game {
         
         System.out.println("Select from menu:\n"
                 + "1: Start Playing\n"
-                + "2: How to play\n"
-                + "3: Blaah Blaah Blaah\n"
-                + "4: Blaah1 Cyaa2 Naaa3");
-        int value = 0;
-        value = input.nextInt();
-
+                + "2: How to play");
+        boolean start = false;
+        
+        do {
+        System.out.println("Type a number to make a selection: ");
+        int value = input.nextInt();
         switch (value) {
             case 1:
                 System.out.println("Game Starts");
+                start = true;
                 break;
             case 2:
-                help.helpMe();
-                break;
-            case 3:
-                System.out.println("3: Blaah Blaah Blaah");
-                break;
-            case 4:
-                System.out.println("4: Blaah1 Cyaa2 Naaa3");
+                System.out.println("----------How to Play----------\n");
+                System.out.println("""
+                \u201cWar\u201d is a two-player game wherein players choose a card from 
+                their hand and reveal their values at the same time as one another.  
+
+                Whoever has the highest value card wins the \u201cbattle\u201d, and gets to keep the pair of cards (or, gets a point).  
+
+                If there is a draw, players each choose another card to reveal at the same time, and this continues until one player wins 
+
+                the \u201cbattle\u201d.  Whoever has the most points in the end wins the game of war.\n""");
                 break;
             default:
-                System.out.println("Invalid Input");    
+                System.out.println("Invalid Input");
+                break;
         }
+            System.out.println("Select from menu:\n"
+                + "1: Start Playing\n"
+                + "2: How to play");
+        } while(start == false);
            
 
     }
 
+    public void Deck() {
+        GroupOfCards deck = new GroupOfCards();
+        for (int i = 0; i < 13; i++) {
+            CardValue value = CardValue.values()[i];
+
+            for (int j = 0; j < 4; j++) {
+                Card card = new PlayingCard(CardSuits.values()[j], value);
+                deck.addCard(card);
+            }
+        }
+        
+        shuffle(deck.getCards());
+    }
+    
     @Override
     public void declareWinner() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -13,19 +13,7 @@ public class Deck extends GroupOfCards {
     private int size;
 
 
-    public Deck() {
-        ArrayList<Card> deck = new ArrayList();
-        for (int i = 0; i < 13; i++) {
-            CardValue value = CardValue.values()[i];
-
-            for (int j = 0; j < 4; j++) {
-                Card card = new PlayingCard(CardSuits.values()[j], value);
-                deck.add(card);
-            }
-        }
-        size = 52;
-        this.deck = deck;
-    }
+    
 
     public int cardsLeft() {
         return deck.size() - size;
