@@ -1,5 +1,3 @@
-
-
 import java.util.Scanner;
 
 
@@ -7,11 +5,11 @@ import java.util.Scanner;
 
 public class War extends Game {
 
-    private Deck deck;
+    private GroupOfCards deck;
     private int handSize;
     private HumanPlayer help;
 
-    public War(Deck deck, int handSize, String name) {
+    public War(GroupOfCards deck, int handSize, String name) {
         super(name);
         this.deck = deck;
         this.handSize = handSize;
@@ -31,7 +29,7 @@ public class War extends Game {
         return this.deck;
     }
 
-    public void setDeck(Deck deck) {
+    public void setDeck(GroupOfCards deck) {
         this.deck = deck;
     }
 
@@ -47,14 +45,14 @@ public class War extends Game {
     public void play() {
 
         System.out.println("----------WELCOME TO WAR----------");
-        
+
         Scanner input = new Scanner(System.in);
-        
+
         System.out.println("Select from menu:\n"
-                + "1: Start Playing\n"
-                + "2: How to play\n"
-                + "3: Blaah Blaah Blaah\n"
-                + "4: Blaah1 Cyaa2 Naaa3");
+            + "1: Start Playing\n"
+            + "2: How to play\n"
+            + "3: Blaah Blaah Blaah\n"
+            + "4: Blaah1 Cyaa2 Naaa3");
         int value = 0;
         value = input.nextInt();
 
@@ -72,9 +70,9 @@ public class War extends Game {
                 System.out.println("4: Blaah1 Cyaa2 Naaa3");
                 break;
             default:
-                System.out.println("Invalid Input");    
+                System.out.println("Invalid Input");
         }
-           
+
 
     }
 

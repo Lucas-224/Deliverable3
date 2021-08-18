@@ -15,9 +15,9 @@ public enum CardValue {
     JACK(10),
     QUEEN(10),
     KING(10);
-    public final int label;
+    public final int strength;
     private CardValue(int label){
-        this.label = label;
+        this.strength = label;
     
   }
 }
