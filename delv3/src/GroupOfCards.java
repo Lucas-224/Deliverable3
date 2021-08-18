@@ -11,11 +11,13 @@ public class GroupOfCards {
     }
 
     public void shuffle() {
+
         Collections.shuffle(this.getCards());
     }
 
     public ArrayList getCards() {
         return this.cards;
+
     }
 
     public void showCards() {
@@ -32,7 +34,10 @@ public class GroupOfCards {
         if (index < 0 || index > cards.size()) {
             throw new IllegalArgumentException("Position does not exist in hand: " + index);
         }
+
         return cards.remove(index);
+
+
     }
 
     // to remove first card (e.g. for drawing from deck)...ALSO REQUIRES VALIDATION BEFORE ACCESSING
