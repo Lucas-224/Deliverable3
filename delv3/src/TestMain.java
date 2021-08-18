@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 /*
@@ -20,11 +21,15 @@ public class TestMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArrayList<Card> deck = new ArrayList();
+        Scanner in = new Scanner(System.in);
+        Deck deck = new Deck();
         
-        Deck normalDeck = new Deck(deck);
-        normalDeck.getSize();
-        Hand hand = new Hand();
+        int handsize = 5;
+        
+        String name = "War"; 
+        
+        War war = new War(deck, handsize, name);
+        war.play();
         
     }
         

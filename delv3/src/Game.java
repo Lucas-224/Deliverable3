@@ -12,8 +12,7 @@ public abstract class Game {
      * @param name
      */
     public Game(String name) {
-        // TODO - implement Game.Game
-        throw new UnsupportedOperationException();
+        
     }
 
 
