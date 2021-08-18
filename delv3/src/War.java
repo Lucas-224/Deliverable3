@@ -8,7 +8,7 @@ public class War extends Game {
 
     private GroupOfCards deck;
     private int handSize;
-    private HumanPlayer help; // What is this?
+    private HumanPlayer help; // What is this? // this was for the helpMe() thing in humanPlayer that was removed i believe
     private Player p1;
     private Player p2; // we can change these later
     private Scanner scanner = new Scanner(System.in);
@@ -142,23 +142,59 @@ public class War extends Game {
                 If there is a draw, players each choose another card to reveal at the same time, and this continues until one player wins 
 
                 the \u201cbattle\u201d.  Whoever has the most points in the end wins the game of war.\n""");
+                    System.out.println("Select from menu:\n"
+                + "1: Start Playing\n"
+                + "2: How to play");
                     break;
                 default:
                     System.out.println("Invalid Input");
-
-                    break;
-            }
-            System.out.println("Select from menu:\n"
+                    System.out.println("Select from menu:\n"
                 + "1: Start Playing\n"
                 + "2: How to play");
+                    break;
+            }
+            
         } while (start == false);
 
-
+        deck.shuffle();
         System.out.println("----------WELCOME TO WAR----------");
         System.out.println("Hello, please enter your name.");
         String playerName = input.nextLine();
+        Player player = new HumanPlayer(playerName);
 
-        //Player player = new HumanPlayer(playerName);
+        
+        System.out.println("Enter hand size: (5) recommended");
+        setHandSize(input.nextInt());
+        
+        //System.out.println("Enter name of opponent: ");
+        
+        System.out.println("Select your opponent: \n1) Easy");
+        int aiPersonality = input.nextInt();
+        String aiName = null;
+        switch (aiPersonality) {
+            case 1:
+                aiName = "Easy Eric";
+                break;
+        }
+        Player Opponent = new AiOpponent(aiPersonality, aiName);
+        GroupOfCards deck = new GroupOfCards();
+        for (int i = 0; i < 13; i++) {
+            CardValue value = CardValue.values()[i];
+
+            for (int j = 0; j < 4; j++) {
+                Card card = new PlayingCard(CardSuits.values()[j], value);
+                deck.addCard(card);
+            }
+        }
+        shuffle(deck.getCards());
+        
+        GroupOfCards playerHand = new GroupOfCards();
+        playerHand.setLimit(handSize);
+        GroupOfCards oppHand = new GroupOfCards();
+        oppHand.setLimit(handSize);
+        
+        
+        
 
     }
 

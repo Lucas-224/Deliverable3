@@ -61,6 +61,10 @@ public class GroupOfCards {
         return cards.size();
     }
 
+    public int checkHand(GroupOfCards hand) {
+        return hand.getLimit() - hand.getSize();
+    }
+    
     public int getLimit() {
         return limit;
     }
