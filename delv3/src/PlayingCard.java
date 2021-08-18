@@ -1,4 +1,3 @@
-
 // this is a test for git pull
 public class PlayingCard extends Card {
 
@@ -22,6 +21,10 @@ public class PlayingCard extends Card {
 
     public CardValue getValue() {
         return value;
+    }
+
+    public int getStrength() {
+        return value.strength;
     }
 
     @Override
