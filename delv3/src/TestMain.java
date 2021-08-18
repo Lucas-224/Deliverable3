@@ -21,15 +21,12 @@ public class TestMain {
      */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Deck deck = new Deck();
+        String name = "\"The Game of WAR -- (C)Abstract Warriors Software\""; 
         
-        int handsize = 5;
-        
-        String name = "War"; 
-        
-        War war = new War(deck, handsize, name);
+        War war = new War(name);
         war.play();
-        
+                //Deck deck = new Deck();
+        //int handsize = 5;
     }
         
     
