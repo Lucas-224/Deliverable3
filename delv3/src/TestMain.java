@@ -25,7 +25,6 @@ public class TestMain {
 
         int handsize = 5;
 
-        String name = "War";
 
 
         for (int i = 0; i < 13; i++) {
