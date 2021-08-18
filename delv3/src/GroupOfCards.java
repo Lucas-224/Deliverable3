@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class GroupOfCards {
+public abstract class GroupOfCards {
 
     private ArrayList<Card> card;
     private int size;
@@ -44,6 +44,14 @@ public class GroupOfCards {
     }
     public void setSize(int size) {
         this.size = size;
+    }
+    
+    public void Deck(){
+        
+    }
+    
+    public void Hand() {
+        
     }
 
 }
