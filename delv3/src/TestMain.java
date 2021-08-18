@@ -19,13 +19,10 @@ public class TestMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         GroupOfCards deck = new GroupOfCards();
-
         int handsize = 5;
-
-
 
         for (int i = 0; i < 13; i++) {
             CardValue value = CardValue.values()[i];
@@ -35,11 +32,22 @@ public class TestMain {
                 deck.addCard(card);
             }
         }
-        deck.shuffle();
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //War war = new War(deck, handsize, name);
         //war.play();
-
+/*
         System.out.println("Testing deck...");
         System.out.println("Deck size: " + deck.getSize());
         System.out.println("Default limit: " + deck.getLimit());
@@ -65,8 +73,10 @@ public class TestMain {
         PlayingCard testCard = (PlayingCard) hand.removeCard(val);
         System.out.println("Card Strength: " + testCard.getStrength());
         String Gname = "\"The Game of WAR -- (C)Abstract Warriors Software\"";
-
-        War war = new War(name);
+        System.out.println("deck size:" + deck.getSize());
+        */
+        
+        War war = new War("War");
         war.play();
         //Deck deck = new Deck();
         //int handsize = 5;
