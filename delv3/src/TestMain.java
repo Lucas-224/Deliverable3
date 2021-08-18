@@ -31,7 +31,7 @@ public class TestMain {
             CardValue value = CardValue.values()[i];
 
             for (int j = 0; j < 4; j++) {
-                Card card = new PlayingCard(CardSuits.values()[j], value);
+                PlayingCard card = new PlayingCard(CardSuits.values()[j], value);
                 deck.addCard(card);
             }
         }
@@ -59,11 +59,16 @@ public class TestMain {
         }
         hand.showCards();
 
-        String name = "\"The Game of WAR -- (C)Abstract Warriors Software\""; 
-        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a card 0 ~ 4");
+        int val = sc.nextInt();
+        PlayingCard testCard = (PlayingCard) hand.removeCard(val);
+        System.out.println("Card Strength: " + testCard.getStrength());
+        String Gname = "\"The Game of WAR -- (C)Abstract Warriors Software\"";
+
         War war = new War(name);
         war.play();
-                //Deck deck = new Deck();
+        //Deck deck = new Deck();
         //int handsize = 5;
 
     }
