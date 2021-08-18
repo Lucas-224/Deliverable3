@@ -31,7 +31,7 @@ public class TestMain {
             CardValue value = CardValue.values()[i];
 
             for (int j = 0; j < 4; j++) {
-                Card card = new PlayingCard(CardSuits.values()[j], value);
+                PlayingCard card = new PlayingCard(CardSuits.values()[j], value);
                 deck.addCard(card);
             }
         }
@@ -58,5 +58,11 @@ public class TestMain {
             hand.addCard(deck.removeCard());
         }
         hand.showCards();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a card 0 ~ 4");
+        int val = sc.nextInt();
+        PlayingCard testCard = (PlayingCard) hand.removeCard(val);
+        System.out.println("Card Strength: " + testCard.getStrength());
     }
 }
