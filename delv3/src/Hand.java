@@ -10,11 +10,10 @@ import java.util.ArrayList;
  * this class 
  * @author Lucas
  */
-public class Hand extends GroupOfCards{
+public class Hand extends GroupOfCards {
     
-    private GroupOfCards hand;   // The cards in the hand.
-
-    public Hand() {
-        hand = new GroupOfCards();
+  
+    public Hand(int size) {
+        super(size);
     }
 }
