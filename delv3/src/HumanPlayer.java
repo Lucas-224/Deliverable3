@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
-    GroupOfCards hand = new GroupOfCards();
-
     public HumanPlayer(String name) {
         super(name);
     }

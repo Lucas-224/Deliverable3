@@ -8,7 +8,6 @@ public class AiOpponent extends Player {
 
     private int personalityType;
 
-
     public AiOpponent(int personalityType, String name) {
         super(name);
         setPersonalityType(personalityType);

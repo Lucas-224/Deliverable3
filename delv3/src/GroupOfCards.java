@@ -72,4 +72,8 @@ public class GroupOfCards {
         }
         this.limit = limit;
     }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
 }

@@ -38,52 +38,75 @@ public class War extends Game {
         // 1 = player 1; 2 = player 2; 0 = draw
         int roundWinnerInt = compareCards(p1Card, p2Card);
 
+        System.out.println("\n" + p1.getName() + " played: "
+            + p1Card.toString());
+        System.out.println(p2.getName() + " played: " + p2Card.toString()
+            + "\n");
+
         // New score = old score + 2... 2 points for winning a round
         switch (roundWinnerInt) {
             case 1:
                 p1.setScore(p1.getScore() + 2);
+                System.out.println(p1.getName() + " gets 2 points!\n");
                 break;
             case 2:
                 p2.setScore(p2.getScore() + 2);
+                System.out.println(p2.getName() + " gets 2 points!\n");
                 break;
             case 0:
-                System.out.println("A draw?!? DECLARATION OF WAR!!!");
+                System.out.println("A draw?!? DECLARATION OF WAR!!!\n");
                 warRound();
                 break;
             default:
-                System.out.println("Round winner unknown.  No points awarded.");
+                System.out.println("Round winner unknown.  No points "
+                    + "awarded.\n");
         }
     }
 
     public void warRound() {
 
-        int pointPool = 2; // 2 points for previous cards        
+        int pointPool = 0;
         boolean warDone = false;
         int warVictor = 0;
 
         // until war is done, OR hand runs out of cards, do this
-        for (int i = 0; !warDone && i < p1.getHand().getSize(); i++) {
+        for (int i = 0; !warDone && p1.getHand().getSize() != 0; i++) {
+
+            pointPool += 2; // 2 pts for each draw that leads to this iteration
 
             PlayingCard p1card = (PlayingCard) p1.chooseCard();
             PlayingCard p2card = (PlayingCard) p2.chooseCard();
+
+            System.out.println("\n" + p1.getName() + " played: "
+                + p1card.toString());
+            System.out.println(p2.getName() + " played: " + p2card.toString()
+                + "\n");
 
             warVictor = compareCards(p1card, p2card);
             if (warVictor != 0) {
                 pointPool += 2;
                 warDone = true;
+            } else {
+                System.out.println("The war wages on!!!\n");
             }
         } // end war for-loop
 
         // there's probably a more elegant way to check this...
         if (!warDone) {
+            System.out.println("The war ended in a draw..." + pointPool
+                + " points vanished...\n");
             pointPool = 0;
         }
 
         if (warVictor == 1) {
             p1.setScore(p1.getScore() + pointPool);
+            System.out.println(p1.getName() + " won the war for " + pointPool
+                + " points!\n");
 
         } else if (warVictor == 2) {
             p2.setScore(p2.getScore() + pointPool);
+            System.out.println(p2.getName() + " won the war for " + pointPool
+                + " points!\n");
         }
     }
 
@@ -216,7 +239,6 @@ public class War extends Game {
 
 
         // select hand size
-
         while (!validHandSize) {
             int handSizeChoice = Game.getValidDigit("Enter hand size (3 to 9..."
                 + " 5 is recommended): ", "Only enter a single digit.", input);
@@ -232,7 +254,6 @@ public class War extends Game {
         }
 
         System.out.println("Select your opponent:\n1) Easy Eric");
-
         while (!validDifficulty) {
             aiPersonality = Game.getValidDigit("Choose opponent number: ",
                                                "Please choose from the "
@@ -267,15 +288,23 @@ public class War extends Game {
          */
 
         this.deck = createDeck();
-        GroupOfCards playerHand = new GroupOfCards();
-        playerHand.setLimit(handSize);
-        GroupOfCards oppHand = new GroupOfCards();
-        oppHand.setLimit(handSize);
+        /*
+         * GroupOfCards playerHand = new GroupOfCards();
+         * playerHand.setLimit(handSize);
+         * GroupOfCards oppHand = new GroupOfCards();
+         * oppHand.setLimit(handSize);
+         */
 
         p1.setHand(initialDraw());
+        p1.getHand().setLimit(handSize);
         p2.setHand(initialDraw());
+        p2.getHand().setLimit(handSize);
 
-
+        while (p1.getHand().getSize() >= 1) {
+            round((PlayingCard) p1.chooseCard(), (PlayingCard) p2.chooseCard());
+            bothPlayersDrawToFullHand();
+        }
+        declareWinner();
     }
 
     // refactored this to "createDeck" to use verbNoun() naming convention
@@ -298,7 +327,7 @@ public class War extends Game {
         GroupOfCards newHand = new GroupOfCards();
 
         for (int i = 0; i < handSize; i++) {
-            newHand.addCard(this.deck.removeCard(handSize));
+            newHand.addCard(this.deck.removeCard());
         }
         return newHand;
     }
@@ -307,22 +336,32 @@ public class War extends Game {
 
         // while player hand is empty OR not full... need to check null to
         // prevent null pointer exception
+        // AND deck must have enough cards to draw.
         while (p1.getHand() == null
-            || (p1.getHand().getSize() < p1.getHand().getLimit())) {
-            if (deck.getSize() >= 2) {
-                p1.getHand().addCard(deck.removeCard());
-                p2.getHand().addCard(deck.removeCard());
-            }
+            || (p1.getHand().getSize() < p1.getHand().getLimit())
+            && deck.getSize() >= 2) {
+
+            p1.getHand().addCard(deck.removeCard());
+            p2.getHand().addCard(deck.removeCard());
         }
     }
 
     @Override
     public void declareWinner() {
+        int winnerScore = 0;
+        int loserScore = 0;
+
         if (p1.getScore() > p2.getScore()) {
             System.out.print(p1.getName());
+            winnerScore = p1.getScore();
+            loserScore = p2.getScore();
+
         } else if (p2.getScore() > p1.getScore()) {
             System.out.print(p2.getName());
+            winnerScore = p2.getScore();
+            loserScore = p1.getScore();
         }
-        System.out.println(" wins the game!");
+        System.out.println(" wins the game with " + winnerScore + " points!");
+        System.out.println("The loser only got " + loserScore + " points...");
     }
 }

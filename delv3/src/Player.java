@@ -3,7 +3,7 @@ public abstract class Player {
 
     private String name;
     private int score;
-    private GroupOfCards hand = new GroupOfCards(); // this might work better?
+    GroupOfCards hand = new GroupOfCards(); // this might work better?
 
 
     public String getName() {
