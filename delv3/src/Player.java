@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-
 public abstract class Player {
 
 
     private String name;
     private int score;
-    private GroupOfCards hand;
-    private boolean isHuman; // there's probably a better way to do this...
+    private GroupOfCards hand = new GroupOfCards(); // this might work better?
 
 
     public String getName() {
@@ -25,11 +22,13 @@ public abstract class Player {
         this.name = Game.cleanStringInput(name);
     }
 
+    // Made obsolete by chooseCard() method? **********
     public void play() {
         // add play feature
     }
 
 
+    // Remove??? **********
     /**
      * player choices
      * <p>
@@ -49,12 +48,12 @@ public abstract class Player {
      */
     public void setScore(int score) {
 
+        // prevents negative scores
         if (score < 0) {
             this.score = 0;
         } else {
             this.score = score;
         }
-
     }
 
     // changed from returning int to returning a card, made it abstract
@@ -68,9 +67,7 @@ public abstract class Player {
      *
      * @param cards
      */
-    public void setHand(ArrayList cards) {
-        // TODO - implement Player.setHand
-        throw new UnsupportedOperationException();
+    public void setHand(GroupOfCards cards) {
+        this.hand = cards;
     }
-
 }

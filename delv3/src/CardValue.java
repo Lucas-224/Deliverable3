@@ -1,6 +1,3 @@
-
-//This is a test to see if this was PUSHED
-
 public enum CardValue {
     ACE(11),
     TWO(2),
@@ -16,8 +13,8 @@ public enum CardValue {
     QUEEN(10),
     KING(10);
     public final int strength;
-    private CardValue(int label){
+
+    private CardValue(int label) {
         this.strength = label;
-    
-  }
+    }
 }

@@ -1,20 +1,18 @@
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Game {
 
     private String name;
     private ArrayList players;
 
-
     /**
      *
      * @param name
      */
     public Game(String name) {
-        
-    }
 
+    }
 
     public String getName() {
         return this.name;
@@ -38,8 +36,8 @@ public abstract class Game {
      * @param name
      */
     //public Game(String name) {
-        // TODO - implement Game.Game
-     //   throw new UnsupportedOperationException();
+    // TODO - implement Game.Game
+    //   throw new UnsupportedOperationException();
     //}
 
     public abstract void play();
@@ -65,5 +63,23 @@ public abstract class Game {
         input = input.replaceAll("\\\'", "");
 
         return input;
+    }
+
+    public static int getValidDigit(String prompt, String errorMsg,
+                                    Scanner sc) {
+        boolean validInt = false;
+        String input = "";
+
+        while (!validInt) {
+            System.out.print(prompt);
+            input = cleanStringInput(sc.next());
+            if (input.matches("\\d")) {
+                validInt = true;
+            } else {
+                System.out.println(errorMsg);
+            }
+
+        }
+        return Integer.parseInt(input);
     }
 }
