@@ -1,4 +1,3 @@
-// this is a test for git pull
 public class PlayingCard extends Card {
 
     private CardSuits suit;

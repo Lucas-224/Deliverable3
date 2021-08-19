@@ -34,10 +34,7 @@ public class GroupOfCards {
         if (index < 0 || index > cards.size()) {
             throw new IllegalArgumentException("Position does not exist in hand: " + index);
         }
-
         return cards.remove(index);
-
-
     }
 
     // to remove first card (e.g. for drawing from deck)...ALSO REQUIRES VALIDATION BEFORE ACCESSING
@@ -64,7 +61,7 @@ public class GroupOfCards {
     public int checkHand(GroupOfCards hand) {
         return hand.getLimit() - hand.getSize();
     }
-    
+
     public int getLimit() {
         return limit;
     }
@@ -74,5 +71,9 @@ public class GroupOfCards {
             limit = 1; // force minimum limit of 1
         }
         this.limit = limit;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 }
