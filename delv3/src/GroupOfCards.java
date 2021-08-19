@@ -25,7 +25,10 @@ public class GroupOfCards {
             System.out.println("No cards left!");
         }
         for (int i = 0; i < cards.size(); i++) {
-            System.out.println("Card [" + i + "]: " + cards.get(i).toString());
+            System.out.println("Card [" + (i + 1) + "]: "
+                + cards.get(i).toString());
+
+            // i + 1 to use 1 to 9 instead of 0 - 8!
         }
     }
 

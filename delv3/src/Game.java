@@ -40,7 +40,7 @@ public abstract class Game {
     //   throw new UnsupportedOperationException();
     //}
 
-    public abstract void play();
+    public abstract void play() throws InterruptedException;
 
     public abstract void declareWinner();
 
