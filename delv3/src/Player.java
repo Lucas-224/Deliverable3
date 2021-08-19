@@ -4,6 +4,7 @@ public abstract class Player {
     private String name;
     private int score;
     GroupOfCards hand = new GroupOfCards(); // this might work better?
+    boolean atWar;
 
 
     public String getName() {
@@ -57,7 +58,7 @@ public abstract class Player {
     }
 
     // changed from returning int to returning a card, made it abstract
-    public abstract Card chooseCard();
+    public abstract Card chooseCard() throws InterruptedException;
 
     public GroupOfCards getHand() {
         return this.hand;

@@ -12,7 +12,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public PlayingCard chooseCard() {
+    public PlayingCard chooseCard() throws InterruptedException {
 
         boolean validInput = false;
         int max = hand.getSize();
@@ -28,7 +28,10 @@ public class HumanPlayer extends Player {
 
             // only supports 0 ~ 9
             if (inputStr.matches("\\d")) {
-                inputInt = Integer.parseInt(inputStr);
+
+                // - 1 is to allow usage of 1 - 9 for card selection instead
+                // of 0 - 8...this converts card "1" into index 0.
+                inputInt = Integer.parseInt(inputStr) - 1;
 
                 // must be LESS than max...if size = 1, then "max index" == 0
                 if (inputInt < max) {
@@ -36,9 +39,12 @@ public class HumanPlayer extends Player {
                 } else {
                     System.out.println("OOPS! Enter between 0 and "
                         + (max - 1) + "!"); // "between 0 and 0" is acceptable
+                    Thread.sleep(1000);
+
                 } // end check for acceptable index
             } else {
                 System.out.println("OOPS! Enter a single digit ONLY!");
+                Thread.sleep(1000);
             } // end check for digit entered
         } // end "while-loop" check for valid input
 
