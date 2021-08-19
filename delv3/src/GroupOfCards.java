@@ -11,7 +11,6 @@ public class GroupOfCards {
     }
 
     public void shuffle() {
-
         Collections.shuffle(this.getCards());
     }
 
