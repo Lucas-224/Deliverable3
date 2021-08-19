@@ -148,6 +148,7 @@ public class War extends Game {
         boolean validHandSize = false;
         boolean validDifficulty = false;
         String aiName = "";
+        String playerName = "";
         int aiPersonality = 0;
 
         // introduction
@@ -179,6 +180,7 @@ public class War extends Game {
                     If there is a draw, players each choose another card to reveal at the same time, and this continues until one player wins 
 
                     the \u201cbattle\u201d.  Whoever has the most points in the end wins the game of war.\n""");
+                    break;
                 case 0:
                     validHandSize = true;
                     validDifficulty = true;
@@ -186,6 +188,7 @@ public class War extends Game {
                     setHandSize(5);
                     aiPersonality = 2;
                     aiName = "Random Randy";
+                    playerName = "Player 1";
                     break;
                 default:
                     System.out.println("Only enter 1 or 2!");
@@ -195,10 +198,10 @@ public class War extends Game {
         }
 
         // Get player name
-        System.out.println("Hello, please enter your name.");
-        input.nextLine(); // purge the scanner's buffer
-        String playerName = Game.cleanStringInput(input.nextLine());
-
+        if (playerName == "") {
+            System.out.println("Hello, please enter your name.");
+            playerName = Game.cleanStringInput(input.nextLine());
+        }
 
         // select hand size
         while (!validHandSize) {
@@ -216,10 +219,14 @@ public class War extends Game {
             }
         }
 
-        System.out.println("Select your opponent:\n1) Aggressive Andrew (Easy)"
-            + "\n2) Random Randy (Easy)\n3) Careful Carl (Medium)"
-            + "\n4) Smart Stewart (Hard)\n5) Dominating Diane (Very Hard)");
-        while (aiPersonality < 1) {
+        if (aiPersonality == 0) {
+            System.out.println("Select your opponent:\n"
+                + "1) Aggressive Andrew (Easy)\n2) Random Randy (Easy)"
+                + "\n3) Careful Carl (Medium)\n4) Smart Stewart (Hard)"
+                + "\n5) Dominating Diane (Very Hard)");
+        }
+        while (!validDifficulty) {
+
             aiPersonality = Game.getValidDigit("Choose opponent number: ",
                                                "Please choose from the "
                                                + "listed options", input);

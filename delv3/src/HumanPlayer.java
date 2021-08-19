@@ -31,14 +31,14 @@ public class HumanPlayer extends Player {
 
                 // - 1 is to allow usage of 1 - 9 for card selection instead
                 // of 0 - 8...this converts card "1" into index 0.
-                inputInt = Integer.parseInt(inputStr) - 1;
+                inputInt = (Integer.parseInt(inputStr)) - 1;
 
                 // must be LESS than max...if size = 1, then "max index" == 0
-                if (inputInt < max) {
+                if (inputInt < max && inputInt >= 0) {
                     validInput = true;
                 } else {
-                    System.out.println("OOPS! Enter between 0 and "
-                        + (max - 1) + "!"); // "between 0 and 0" is acceptable
+                    System.out.println("OOPS! Enter between 1 and "
+                        + (max) + "!"); // "between 1 and 1" is acceptable
                     Thread.sleep(1000);
 
                 } // end check for acceptable index

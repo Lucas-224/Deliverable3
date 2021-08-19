@@ -72,7 +72,7 @@ public abstract class Game {
 
         while (!validInt) {
             System.out.print(prompt);
-            input = cleanStringInput(sc.next());
+            input = cleanStringInput(sc.nextLine());
             if (input.matches("\\d")) {
                 validInt = true;
             } else {
