@@ -226,6 +226,7 @@ public class War extends Game {
                 + "\n5) Dominating Diane (Very Hard)");
         }
         while (!validDifficulty) {
+
             aiPersonality = Game.getValidDigit("Choose opponent number: ",
                                                "Please choose from the "
                                                + "listed options", input);
