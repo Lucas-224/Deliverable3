@@ -219,7 +219,7 @@ public class War extends Game {
         System.out.println("Select your opponent:\n1) Aggressive Andrew (Easy)"
             + "\n2) Random Randy (Easy)\n3) Careful Carl (Medium)"
             + "\n4) Smart Stewart (Hard)\n5) Dominating Diane (Very Hard)");
-        while (!validDifficulty) {
+        while (aiPersonality < 1) {
             aiPersonality = Game.getValidDigit("Choose opponent number: ",
                                                "Please choose from the "
                                                + "listed options", input);
