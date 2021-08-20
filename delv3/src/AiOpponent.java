@@ -13,29 +13,10 @@ public class AiOpponent extends Player {
         setPersonalityType(personalityType);
     }
 
-    public int getPersonalityType() {
-        return this.personalityType;
-    }
-
-    /**
-     *
-     * @param personalityType
-     */
-    public void setPersonalityType(int personalityType) {
-
-        if (personalityType < 1) {
-
-            // set to low difficulty 
-            this.personalityType = 1;
-        }
-        this.personalityType = personalityType;
-    }
-
     @Override
     public PlayingCard chooseCard() {
 
         int indexToReturn = 0;
-
 
         switch (personalityType) {
 
@@ -152,5 +133,23 @@ public class AiOpponent extends Player {
             indexToReturn = 0;
         }
         return indexToReturn;
+    }
+
+    public int getPersonalityType() {
+        return this.personalityType;
+    }
+
+    /**
+     *
+     * @param personalityType
+     */
+    public void setPersonalityType(int personalityType) {
+
+        if (personalityType < 1) {
+
+            // set to low difficulty 
+            this.personalityType = 1;
+        }
+        this.personalityType = personalityType;
     }
 }
