@@ -2,33 +2,53 @@ import java.util.ArrayList;
 import static java.util.Collections.shuffle;
 import java.util.Scanner;
 
+/**
+ * For playing the game of war. This method is too big and does too much at
+ * the moment, but it works, and it only runs functions related to running
+ * the game of war.
+ *
+ * @author Chris Klammer
+ * @author Lucas Donegan
+ * @author Kemon Brown
+ */
 public class War extends Game {
 
     private static War instance = null;
-    
-    private War(String name) {
-        super(name);
-    }
-    
     private GroupOfCards deck;
     private int handSize;
     private Player p1;
     private Player p2;
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Creates an instance of the game of war.
+     *
+     * @param name The name of the game.
+     */
+    private War(String name) {
+        super(name);
+    }
+
+    /**
+     * Allows for a singleton design; only 1 "war" game can exist at once.
+     *
+     * @return An instance of the game of war.
+     */
     public static War getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new War("war");
         }
         return instance;
     }
-    /**
-     *
-     * @param p1Card
-     * @param p2Card
-     */
 
-    // determines round logic
+    /**
+     * Contains the logic for running a single round of the game. Receives
+     * a card from each player, and will determine game-flow based on the
+     * outcome (round ends with scores assigned, or leads to war).
+     *
+     * @param p1Card Player 1's chosen card
+     * @param p2Card Player 2's chosen card
+     */
     public void round(PlayingCard p1Card, PlayingCard p2Card)
         throws InterruptedException {
 
@@ -64,6 +84,16 @@ public class War extends Game {
         Thread.sleep(1000);
     }
 
+    /**
+     * A "war round" which takes place following a draw. Proceeds like normal
+     * rounds, except the players do not draw cards after playing them.
+     * <p>
+     * If the players run out of cards and no winner has been decided at any
+     * point during the war, neither player earns any points during the "war
+     * round".
+     *
+     * @throws InterruptedException
+     */
     public void warRound() throws InterruptedException {
 
         p1.atWar = true;
@@ -120,6 +150,15 @@ public class War extends Game {
         Thread.sleep(1000);
     }
 
+    /**
+     * Compares cards from two players. It returns an integer representing
+     * the winning player (either player *1* or player *2*), or 0 for a draw
+     * (meaning NO winner).
+     *
+     * @param p1Card Player 1's chosen card
+     * @param p2Card Player 2's chosen card
+     * @return An integer representing the winning player (1 or 2) or a draw (0)
+     */
     public int compareCards(PlayingCard p1Card, PlayingCard p2Card) {
         if (p1Card.getStrength() > p2Card.getStrength()) {
             return 1;
@@ -132,7 +171,12 @@ public class War extends Game {
         }
     }
 
-    // refactored this to "createDeck" to use verbNoun() naming convention
+    /**
+     * Creates a standard 52-card deck as a group of cards. 13 values, 4
+     * suits, one of each card.
+     *
+     * @return A group of cards, filled with the 52-card standard deck.
+     */
     public GroupOfCards createDeck() {
         GroupOfCards deck = new GroupOfCards();
         for (int i = 0; i < 13; i++) {
@@ -148,6 +192,12 @@ public class War extends Game {
         return deck;
     }
 
+    /**
+     * Retrieve a GroupOfCards, initialized, to be given to each player at the
+     * start of the game.
+     *
+     * @return a group of cards for a player.
+     */
     public GroupOfCards initialDraw() {
         GroupOfCards newHand = new GroupOfCards();
 
@@ -157,6 +207,16 @@ public class War extends Game {
         return newHand;
     }
 
+    /**
+     * Players draw from the deck until their hands are full, or until the deck
+     * doesn't have enough cards to give each player a card.
+     * <p>
+     * Generally done a the start of a turn. Players draw up until the limit,
+     * or the end of the deck.
+     * <p>
+     * Players draw one card at a time, and should always have the same number
+     * of cards as each other.
+     */
     public void bothPlayersDrawToFullHand() {
 
         // while player hand is empty OR not full... need to check null to
@@ -171,6 +231,15 @@ public class War extends Game {
         }
     }
 
+    /**
+     * Plays through a game of War from start to finish, including setup and
+     * initializing game scenario. After the game begins, it only checks for
+     * the "end game" condition of the player running out of cards. Logic/flow
+     * is generally handled by other methods such as {@link round}
+     *
+     * @see round() method
+     * @throws InterruptedException
+     */
     @Override
     public void play() throws InterruptedException {
 
@@ -189,8 +258,11 @@ public class War extends Game {
             // Maybe "What is War?" + "Controls" ++ messages should easily fit in CLI)
             System.out.println("Select from menu:\n"
                 + "1: Start Playing\n"
-                + "2: How to play\n"
-                + "0: Quick Start");
+                + "2: What is War?\n"
+                + "3: Quick Tips\n"
+                + "4: Controls\n"
+                + "5: Credits\n"
+                + "0: Quick Start (I just wanna play!)");
 
             // user chooses option
             int optionChoice = Game.getValidDigit("Enter a number to make a "
@@ -202,16 +274,40 @@ public class War extends Game {
                     startGame = true;
                     break;
                 case 2:
-                    System.out.println("----------How to Play----------\n");
-                    System.out.println("""
-                    \u201cWar\u201d is a two-player game wherein players choose a card from 
-                    their hand and reveal their values at the same time as one another.  
-
-                    Whoever has the highest value card wins the \u201cbattle\u201d, and gets to keep the pair of cards (or, gets a point).  
-
-                    If there is a draw, players each choose another card to reveal at the same time, and this continues until one player wins 
-
-                    the \u201cbattle\u201d.  Whoever has the most points in the end wins the game of war.\n""");
+                    System.out.println("----------How to Play----------");
+                    System.out.println("War is a two-player game wherein"
+                        + "\nplayers choose a card from their hand, and reveal"
+                        + "\ntheir cards' values at the same time as one "
+                        + "another."
+                        + "\nWhoever has the highest value card wins the"
+                        + "\nbattle and gets to keep the pair of cards"
+                        + "\n(or, gets 2 points)."
+                        + "\n\nIf there is a draw, a \"WAR\" is declared!"
+                        + "\nPlayers each choose another card to reveal at the"
+                        + "\nsame time, and this continues until one player"
+                        + "\nwins the battle."
+                        + "\n\nPlayers DO NOT draw cards during a WAR!"
+                        + "\nIf players run out of cards in the middle of a"
+                        + "\nWAR, then points for that battle are thrown away!"
+                        + "\nWhoever has the most points in the end wins the"
+                        + "\ngame of war.\n");
+                    break;
+                case 3:
+                    System.out.println("Ace is the best card!\nIt has a "
+                        + "value of 11!"
+                        + "\nJack, Queen, and King all have values of 10."
+                        + "\n\nYou might want to save some of these cards for a"
+                        + "\nWAR!");
+                    break;
+                case 4:
+                    System.out.println("Select your card by entering a number."
+                        + "\nConfirm your choice by pressing your Enter key."
+                        + "\n\nYou may forfeit the game by entering 0!");
+                    break;
+                case 5:
+                    System.out.println("Developed by Abstract Warriors"
+                        + "Software, 2021"
+                        + "\nChris Klammer, Lucas Donegan, Kemon Brown");
                     break;
                 case 0:
                     validHandSize = true;
@@ -223,7 +319,7 @@ public class War extends Game {
                     playerName = "Player 1";
                     break;
                 default:
-                    System.out.println("Only enter 1 or 2!");
+                    System.out.println("Only enter 1, 2, 3, 4, 5, or 0!");
                     break;
             }
             Thread.sleep(1000);
@@ -316,6 +412,10 @@ public class War extends Game {
         declareWinner();
     }
 
+    /**
+     * Compares scores to determine a winner. Displays scores and announces a
+     * winner.
+     */
     @Override
     public void declareWinner() {
 
@@ -339,18 +439,38 @@ public class War extends Game {
         System.out.println(" wins the game!");
     }
 
+    /**
+     * Retrieves the group of cards that represents the game's main deck.
+     *
+     * @return The game deck as a group of cards.
+     */
     public GroupOfCards getDeck() {
         return this.deck;
     }
 
+    /**
+     * Assigns a group of cards to the game's main deck.
+     *
+     * @param deck A group of cards.
+     */
     public void setDeck(GroupOfCards deck) {
         this.deck = deck;
     }
 
+    /**
+     * Retrieves the hand size limit for the game.
+     *
+     * @return The hand size (maximum allowable cards at a time per one player)
+     */
     public int getHandSize() {
         return this.handSize;
     }
 
+    /**
+     * Determines the hand size limit for the game.
+     *
+     * @param handSize The maximum number of cards allowed for a player to have.
+     */
     public void setHandSize(int handSize) {
         this.handSize = handSize;
     }

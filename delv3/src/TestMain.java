@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
+ * To play the game of war, run this method!
  *
- * @author Lucas
+ * @author Lucas Donegan
+ * @author Chris Klammer
+ * @author Kemon Brown
  */
 public class TestMain {
 
