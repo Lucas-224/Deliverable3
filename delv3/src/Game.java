@@ -14,32 +14,6 @@ public abstract class Game {
 
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public ArrayList getPlayers() {
-        return this.players;
-    }
-
-    /**
-     *
-     * @param players
-     */
-    public void setPlayers(ArrayList players) {
-        this.players = players;
-    }
-
-
-    /**
-     *
-     * @param name
-     */
-    //public Game(String name) {
-    // TODO - implement Game.Game
-    //   throw new UnsupportedOperationException();
-    //}
-
     public abstract void play() throws InterruptedException;
 
     public abstract void declareWinner();
@@ -81,5 +55,21 @@ public abstract class Game {
 
         }
         return Integer.parseInt(input);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public ArrayList getPlayers() {
+        return this.players;
+    }
+
+    /**
+     *
+     * @param players
+     */
+    public void setPlayers(ArrayList players) {
+        this.players = players;
     }
 }
