@@ -14,11 +14,6 @@ public class GroupOfCards {
         Collections.shuffle(this.getCards());
     }
 
-    public ArrayList getCards() {
-        return this.cards;
-
-    }
-
     public void showCards() {
         if (cards.size() == 0) {
             System.out.println("No cards left!");
@@ -56,12 +51,12 @@ public class GroupOfCards {
         cards.add(newCard);
     }
 
-    public int getSize() {
-        return cards.size();
-    }
-
     public int checkHand(GroupOfCards hand) {
         return hand.getLimit() - hand.getSize();
+    }
+
+    public int getSize() {
+        return cards.size();
     }
 
     public int getLimit() {
@@ -77,5 +72,10 @@ public class GroupOfCards {
 
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
+    }
+
+    public ArrayList getCards() {
+        return this.cards;
+
     }
 }
