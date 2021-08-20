@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import static java.util.Collections.shuffle;
 import java.util.Scanner;
 
@@ -123,20 +124,43 @@ public class War extends Game {
         }
     }
 
-    public GroupOfCards getDeck() {
-        return this.deck;
+    // refactored this to "createDeck" to use verbNoun() naming convention
+    public GroupOfCards createDeck() {
+        GroupOfCards deck = new GroupOfCards();
+        for (int i = 0; i < 13; i++) {
+            CardValue value = CardValue.values()[i];
+
+            for (int j = 0; j < 4; j++) {
+                Card card = new PlayingCard(CardSuits.values()[j], value);
+                deck.addCard(card);
+            }
+        }
+
+        shuffle(deck.getCards());
+        return deck;
     }
 
-    public void setDeck(GroupOfCards deck) {
-        this.deck = deck;
+    public GroupOfCards initialDraw() {
+        GroupOfCards newHand = new GroupOfCards();
+
+        for (int i = 0; i < handSize; i++) {
+            newHand.addCard(this.deck.removeCard());
+        }
+        return newHand;
     }
 
-    public int getHandSize() {
-        return this.handSize;
-    }
+    public void bothPlayersDrawToFullHand() {
 
-    public void setHandSize(int handSize) {
-        this.handSize = handSize;
+        // while player hand is empty OR not full... need to check null to
+        // prevent null pointer exception
+        // AND deck must have enough cards to draw.
+        while (p1.getHand() == null
+            || (p1.getHand().getSize() < p1.getHand().getLimit())
+            && deck.getSize() >= 2) {
+
+            p1.getHand().addCard(deck.removeCard());
+            p2.getHand().addCard(deck.removeCard());
+        }
     }
 
     @Override
@@ -226,7 +250,6 @@ public class War extends Game {
                 + "\n5) Dominating Diane (Very Hard)");
         }
         while (!validDifficulty) {
-
             aiPersonality = Game.getValidDigit("Choose opponent number: ",
                                                "Please choose from the "
                                                + "listed options", input);
@@ -268,59 +291,32 @@ public class War extends Game {
         p2.setHand(initialDraw());
         p2.getHand().setLimit(handSize);
 
+        ArrayList<Player> players = new ArrayList(2);
+        players.add(p1);
+        players.add(p2);
+        this.setPlayers(players);
+
         Thread.sleep(1000);
         System.out.println("\n****************\n" + p1.getName() + " vs. "
             + p2.getName() + "\n****************\n");
         Thread.sleep(1000);
 
         while (p1.getHand().getSize() >= 1) {
-            round((PlayingCard) p1.chooseCard(), (PlayingCard) p2.chooseCard());
             bothPlayersDrawToFullHand();
+            round((PlayingCard) p1.chooseCard(), (PlayingCard) p2.chooseCard());
         }
         declareWinner();
     }
 
-    // refactored this to "createDeck" to use verbNoun() naming convention
-    public GroupOfCards createDeck() {
-        GroupOfCards deck = new GroupOfCards();
-        for (int i = 0; i < 13; i++) {
-            CardValue value = CardValue.values()[i];
-
-            for (int j = 0; j < 4; j++) {
-                Card card = new PlayingCard(CardSuits.values()[j], value);
-                deck.addCard(card);
-            }
-        }
-
-        shuffle(deck.getCards());
-        return deck;
-    }
-
-    public GroupOfCards initialDraw() {
-        GroupOfCards newHand = new GroupOfCards();
-
-        for (int i = 0; i < handSize; i++) {
-            newHand.addCard(this.deck.removeCard());
-        }
-        return newHand;
-    }
-
-    public void bothPlayersDrawToFullHand() {
-
-        // while player hand is empty OR not full... need to check null to
-        // prevent null pointer exception
-        // AND deck must have enough cards to draw.
-        while (p1.getHand() == null
-            || (p1.getHand().getSize() < p1.getHand().getLimit())
-            && deck.getSize() >= 2) {
-
-            p1.getHand().addCard(deck.removeCard());
-            p2.getHand().addCard(deck.removeCard());
-        }
-    }
-
     @Override
     public void declareWinner() {
+
+        if (p1.getScore() < 0) {
+            p1.setScore(0);
+        }
+        if (p2.getScore() < 0) {
+            p2.setScore(0);
+        }
 
         System.out.println(p1.getName() + " has " + p1.getScore() + " points.");
         System.out.println(p2.getName() + " has " + p2.getScore() + " points.");
@@ -333,5 +329,21 @@ public class War extends Game {
         }
 
         System.out.println(" wins the game!");
+    }
+
+    public GroupOfCards getDeck() {
+        return this.deck;
+    }
+
+    public void setDeck(GroupOfCards deck) {
+        this.deck = deck;
+    }
+
+    public int getHandSize() {
+        return this.handSize;
+    }
+
+    public void setHandSize(int handSize) {
+        this.handSize = handSize;
     }
 }
