@@ -6,11 +6,6 @@ public class HumanPlayer extends Player {
         super(name);
     }
 
-    public void surrender() {
-        // TODO - implement HumanPlayer.surrender
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public PlayingCard chooseCard() throws InterruptedException {
 
@@ -24,10 +19,15 @@ public class HumanPlayer extends Player {
             this.hand.showCards();
             System.out.println("Choose a card from the above");
 
-            inputStr = Game.cleanStringInput(sc.next());
+            inputStr = Game.cleanStringInput(sc.nextLine());
 
             // only supports 0 ~ 9
             if (inputStr.matches("\\d")) {
+
+                if (inputStr.matches("0")) {
+                    surrender(sc);
+                    inputStr = "1"; // to throw away last card
+                }
 
                 // - 1 is to allow usage of 1 - 9 for card selection instead
                 // of 0 - 8...this converts card "1" into index 0.
@@ -50,5 +50,31 @@ public class HumanPlayer extends Player {
 
         // if we're here, we can safely return the selected card
         return (PlayingCard) hand.removeCard(inputInt);
+    }
+
+    public void surrender(Scanner sc) throws InterruptedException {
+
+        System.out.println("Do you REALLY want to surrender? Y/N");
+        String exitInput = Game.cleanStringInput(sc.nextLine());
+
+        // only accepts "Y" to prevent accidents
+        if (exitInput.matches("[Yy]")) {
+
+            this.setScore(-2);
+
+            // throw away cards...this will help trigger end of game
+            while (this.hand.getCards().size() > 1) {
+                this.hand.removeCard();
+            }
+
+            // Not the best way, but it works
+            System.out.println(this.getName() + " throws away all their cards!"
+                + "\nBut plays their last card anyway.");
+            Thread.sleep(1000);
+
+        } else {
+            System.out.println("Then the war rages on!");
+            Thread.sleep(1000);
+        }
     }
 }

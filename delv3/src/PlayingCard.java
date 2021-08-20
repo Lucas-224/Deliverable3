@@ -8,7 +8,6 @@ public class PlayingCard extends Card {
      * @param suit
      * @param value
      */
-
     public PlayingCard(CardSuits suit, CardValue value) {
         this.suit = suit;
         this.value = value;

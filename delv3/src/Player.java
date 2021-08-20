@@ -4,12 +4,7 @@ public abstract class Player {
     private String name;
     private int score;
     GroupOfCards hand = new GroupOfCards(); // this might work better?
-    boolean atWar;
-
-
-    public String getName() {
-        return this.name;
-    }
+    boolean atWar; // for AI logic
 
     public Player() {
         // null constructor to allow for placeholders in War class
@@ -17,44 +12,6 @@ public abstract class Player {
 
     public Player(String name) {
         setName(name);
-    }
-
-    public void setName(String name) {
-        this.name = Game.cleanStringInput(name);
-    }
-
-    // Made obsolete by chooseCard() method? **********
-    public void play() {
-        // add play feature
-    }
-
-
-    // Remove??? **********
-    /**
-     * player choices
-     * <p>
-     */
-
-    //public int chooseCardToDraw() {
-    //    return in.nextInt();
-    //}
-
-    public int getScore() {
-        return this.score;
-    }
-
-    /**
-     *
-     * @param score
-     */
-    public void setScore(int score) {
-
-        // prevents negative scores
-        if (score < 0) {
-            this.score = 0;
-        } else {
-            this.score = score;
-        }
     }
 
     // changed from returning int to returning a card, made it abstract
@@ -70,5 +27,33 @@ public abstract class Player {
      */
     public void setHand(GroupOfCards cards) {
         this.hand = cards;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = Game.cleanStringInput(name);
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
+     *
+     * @param score
+     */
+    public void setScore(int score) {
+
+        // prevents negative scores; except -2 which prevents Surrender-Wins
+        // caused by surrendering while opponent has no cards and then winning
+        // a round
+        if (score < -2) {
+            this.score = 0;
+        } else {
+            this.score = score;
+        }
     }
 }
