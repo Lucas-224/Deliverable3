@@ -14,7 +14,7 @@ public class TestMain {
      */
     public static void main(String[] args) throws InterruptedException {
 
-        War war = new War("war");
+        War war = War.getInstance();
         war.play();
 
     }

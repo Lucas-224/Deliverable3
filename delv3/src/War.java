@@ -4,16 +4,24 @@ import java.util.Scanner;
 
 public class War extends Game {
 
+    private static War instance = null;
+    
+    private War(String name) {
+        super(name);
+    }
+    
     private GroupOfCards deck;
     private int handSize;
     private Player p1;
     private Player p2;
     private Scanner scanner = new Scanner(System.in);
 
-    public War(String name) {
-        super(name);
+    public static War getInstance() {
+        if(instance == null) {
+            instance = new War("war");
+        }
+        return instance;
     }
-
     /**
      *
      * @param p1Card
