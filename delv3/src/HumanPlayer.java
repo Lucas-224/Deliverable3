@@ -1,11 +1,34 @@
 import java.util.Scanner;
 
+/**
+ * Represents a player controlled by a human. It might be you!
+ *
+ * @author Chris Klammer
+ * @author Lucas Donegan
+ * @author Kemon Brown
+ */
 public class HumanPlayer extends Player {
 
+    /**
+     * Creates a Human Player.
+     *
+     * @param name The name of the human player.
+     */
     public HumanPlayer(String name) {
         super(name);
     }
 
+    /**
+     * Allows a human player to select a card from their hand. The method
+     * reads input from the player and allows them to choose a card, or to
+     * surrender/give up.
+     * <p>
+     * Warning: Cancelling a surrender causes the player to play their first
+     * card (index 0). This is a bug fix/TODO for another day!
+     *
+     * @return A card that was chosen by the player
+     * @throws InterruptedException
+     */
     @Override
     public PlayingCard chooseCard() throws InterruptedException {
 
@@ -52,6 +75,22 @@ public class HumanPlayer extends Player {
         return (PlayingCard) hand.removeCard(inputInt);
     }
 
+    /**
+     * A human player can surrender, giving up their cards and their points,
+     * losing the game. To allow for a graceful end from the "card-selection"
+     * screen, the player throws away all of their cards except 1, then plays
+     * their last card. This allows for a graceful exit back to the war,
+     * allows for the end of the turn, and the game will end because the player
+     * has no cards left.
+     * <p>
+     * To prevent a scenario where the player can win by surrendering on the
+     * first turn and winning that single round, the score is set to -2.
+     * <p>
+     * This happened the first time I successfully tested the method.
+     *
+     * @param sc A scanner to receive user input
+     * @throws InterruptedException
+     */
     public void surrender(Scanner sc) throws InterruptedException {
 
         System.out.println("Do you REALLY want to surrender? Y/N");
